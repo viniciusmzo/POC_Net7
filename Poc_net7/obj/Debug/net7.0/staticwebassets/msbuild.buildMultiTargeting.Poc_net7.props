@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Poc_net7.props" />
+</Project>
