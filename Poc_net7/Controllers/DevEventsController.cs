@@ -73,5 +73,20 @@ namespace Poc_net7.Controllers
 
             return Ok();
         }
+
+        [HttpPost("{id}/speakers")]
+        public IActionResult PostSpeaker(Guid id, DevEventSpeaker speaker) 
+        {
+            var devEvent = _context.DevEvents.SingleOrDefault(x => x.Id == id);
+
+            if (devEvent == null)
+            {
+                return NotFound();
+            }
+
+            devEvent.Speakers.Add(speaker);
+
+            return Ok();
+        }
     }
 }
