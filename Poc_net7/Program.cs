@@ -1,9 +1,10 @@
+using Microsoft.EntityFrameworkCore;
 using Poc_net7.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSingleton<DevEventsDbContext>();
+builder.Services.AddDbContext<DevEventsDbContext>(x => x.UseInMemoryDatabase("DevEventsDb"));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
