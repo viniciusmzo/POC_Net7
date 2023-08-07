@@ -18,7 +18,9 @@ namespace Poc_net7.Controllers
         [HttpGet]
         public IActionResult GetAll() 
         {
-            var devEvents = _context.DevEvents.Where(x => !x.IsDeleted).ToList();
+            var devEvents = _context.DevEvents.Where(x => !x.IsDeleted)
+                .Include(x => x.Speakers)
+                .ToList();
 
             return Ok(devEvents);
         }
