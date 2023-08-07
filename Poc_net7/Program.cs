@@ -4,7 +4,10 @@ using Poc_net7.Persistence;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<DevEventsDbContext>(x => x.UseInMemoryDatabase("DevEventsDb"));
+var connectionString = builder.Configuration.GetConnectionString("DevEventsCs");
+
+//builder.Services.AddDbContext<DevEventsDbContext>(x => x.UseInMemoryDatabase("DevEventsDb"));
+builder.Services.AddDbContext<DevEventsDbContext>(x => x.UseSqlServer(connectionString));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
